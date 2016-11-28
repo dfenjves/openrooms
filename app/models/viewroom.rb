@@ -1,16 +1,50 @@
+require 'pry'
+
 class ViewRoom
   attr_accessor :day, :period, :rooms
 
-OPENROOMS = {"Monday A 1" => [501, 412, 404],
-  "Monday A 2" => [404, 501,666],
-  "Monday A 3" => [123,456,789] }
+# OPENROOMS = {"Monday A 1" => [501, 412, 404],
+#   "Monday A 2" => [404, 501,666],
+#   "Monday A 3" => [123,456,789] }
 
-  def initialize (day, period)
-    self.day = day
-    self.period = period
-    dayperiod = day + " " + period
-    OPENROOMS.each { |key, value| key.match(dayperiod)
-      self.rooms = value }
+OPENROOMS = {"A" => {
+                    "Monday" => {
+                        "1" => [501, 412, 404],
+                        "2" => [404, 501,666],
+                        "3" => [123,456,789]
+                    },
+                    "Tuesday" => {
+                      "1" => [501, 412, 404],
+                      "2" => [404, 501,666],
+                      "3" => [123,456,789]
+                    },
+                    "Wednesday" => {
+                      "1" => [501, 412, 404],
+                      "2" => [404, 501,666],
+                      "3" => [123,456,789]
+                    }
+                  },
+                  "B" => {
+                          "Monday" => {
+                              "1" => [501, 412, 404],
+                              "2" => [404, 501,666],
+                              "3" => [123,456,789]
+                          },
+                          "Tuesday" => {
+                            "1" => [501, 412, 404],
+                            "2" => [404, 501,666],
+                            "3" => [123,456,789]
+                          },
+                          "Wednesday" => {
+                            "1" => [501, 412, 404],
+                            "2" => [404, 501,666],
+                            "3" => [123,456,789]
+                          }
+                        }
+                }
+
+  def initialize (week, day, period)
+    self.rooms = OPENROOMS[week][day][period]
   end
 
 end
